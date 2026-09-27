@@ -3,47 +3,745 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#E39FC8" />
   <meta name="description" content="Solo Exhibition by Ana Curbelo 02.11.22 - 10.12.22" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="canonical" href="https://nowdrawthecurtain.untepid.com/" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/ota8qvd.css">
-  <meta property="og:url" content="https://nowdrawthecurtain.com/" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Now Draw the Curtains" />
+  <meta property="og:url" content="https://nowdrawthecurtain.untepid.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Now Draw the Curtain" />
   <meta property="og:description" content="Solo Exhibition by Ana Curbelo 02.11.22 - 10.12.22" />
-  <meta property="og:image" itemprop="image" content="https://nowdrawthecurtain.com/android-chrome-512x512.png" />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+  <meta property="og:image" content="https://nowdrawthecurtain.untepid.com/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <title>Now Draw The Curtain - Untepid</title>
+  <style>
+    :root {
+      --font-main: "franklin-gothic-condensed", sans-serif;
+      --font-header: "freight-big-pro", serif;
+      --color-main: #E39FC8;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: var(--font-main);
+      background-color: var(--color-main);
+      color: #000;
+    }
+
+    a {
+      color: currentColor;
+    }
+
+    h3 {
+      font-family: var(--font-header);
+      text-align: center;
+      font-size: 2.5rem;
+    }
+
+    /* Splash */
+    .banner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #121212;
+      color: white;
+      width: calc(100vw - 1rem);
+      text-align: center;
+      padding: 0.75rem 0.5rem;
+      font-size: 1rem;
+    }
+
+    .banner div {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .splash {
+      height: calc(100svh - 10rem);
+      padding: 1rem;
+      font-size: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .splash h1 {
+      font-family: var(--font-header);
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 3rem;
+      line-height: 1;
+      max-width: 300px;
+    }
+
+    .splash h2 {
+      font-family: var(--font-header);
+      font-weight: normal;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .splash span {
+      display: block;
+    }
+
+    .header {
+      font-family: var(--font-header);
+      padding-top: 5rem;
+    }
+
+    .details {
+      font-size: 1rem;
+      margin-top: 10vh;
+    }
+
+    /* Intro */
+    .intro .frame {
+      margin: 10vh auto;
+      max-width: 1200px;
+      padding: 3rem;
+      background-color: rgba(0, 0, 0, .15);
+      transform: rotate(-3deg);
+    }
+
+    .intro .blurp {
+      font-size: 1.5rem;
+      background-color: var(--color-main);
+      transform: rotate(3deg);
+      padding: 2rem;
+    }
+
+    /* Gallery */
+    .gallery,
+    .merch {
+      max-width: 2500px;
+      padding: 3rem;
+    }
+
+    .photos {
+      --row: 150px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .photos::after {
+      content: "";
+      flex-grow: 999999;
+    }
+
+    .photos a {
+      flex: var(--r) 1 calc(var(--r) * var(--row));
+    }
+
+    .photos img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .photos:has(.row)::after {
+      content: none;
+    }
+
+    .photos .row {
+      display: flex;
+      flex-basis: 100%;
+      gap: 4px;
+    }
+
+    .photos .row a {
+      flex: var(--r) 1 0;
+      min-width: 0;
+    }
+
+    .photos .row img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #lightbox {
+      padding: 0;
+      border: 0;
+      background: none;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+
+    #lightbox::backdrop {
+      background: rgba(0, 0, 0, .9);
+    }
+
+    #lightbox img {
+      display: block;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    #lightbox button {
+      position: fixed;
+      background: none;
+      border: 0;
+      color: #fff;
+      font-size: 3rem;
+      cursor: pointer;
+      padding: 1rem;
+    }
+
+    #lightbox [data-step="-1"] {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #lightbox [data-step="1"] {
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #lightbox .close {
+      top: 0;
+      right: 0;
+    }
+
+    /* Bio */
+    .bio {
+      margin: 10vh auto;
+      max-width: 1200px;
+      padding: 2rem;
+    }
+
+    .bio .content {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .bio .image {
+      position: relative;
+      display: block;
+      max-width: 500px;
+      width: calc(90% - 2rem);
+      flex-shrink: 0;
+      height: calc(80vw - 2rem);
+    }
+
+    .bio .image img {
+      position: absolute;
+      transition: opacity 3s ease;
+      width: 100%;
+    }
+
+    .bio .hover {
+      animation: pulse 3s ease-in infinite alternate;
+      z-index: 1;
+    }
+
+    .blurp {
+      font-size: 1.5rem;
+    }
+
+    .bio .blurp {
+      padding: 0 2rem;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Merch */
+    .merch .items {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 3rem;
+    }
+
+    .merch .items>div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .merch .image {
+      position: relative;
+      display: block;
+      max-width: 500px;
+      width: 100%;
+      aspect-ratio: 1/1;
+    }
+
+    .merch .image img {
+      position: absolute;
+      transition: opacity 1s ease-in-out;
+      width: 100%;
+    }
+
+    .merch .image:hover .hover {
+      opacity: 0;
+    }
+
+    .merch .hover {
+      z-index: 1;
+    }
+
+    .button {
+      background: #121212;
+      padding: 1rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .button:hover {
+      font-weight: bold;
+    }
+
+    /* Venue */
+    .venue .content {
+      margin: 10vh auto;
+      max-width: 1200px;
+      padding: 1rem;
+    }
+
+    .times {
+      text-align: center;
+      padding-bottom: 2rem;
+      font-size: 1.5rem;
+    }
+
+    .times span {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+
+    footer img {
+      height: 75px;
+    }
+
+    /* Face */
+    .face-container {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .face {
+      position: relative;
+      transition: all 2s ease-in-out;
+    }
+
+    .face img {
+      display: block;
+      width: 200px;
+    }
+
+    .eyes-container {
+      display: none;
+    }
+
+    .eyes-container {
+      position: absolute;
+      z-index: 100;
+      top: 0;
+      right: 0;
+    }
+
+    .eyes {
+      background-color: #000;
+      position: absolute;
+      height: 5px;
+      width: 5px;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .eyes-left {
+      right: 104px;
+      top: 102px;
+    }
+
+    .eyes-right {
+      right: 50px;
+      top: 102px;
+    }
+
+    @media (min-width: 550px) {
+      .splash {
+        min-height: 700px;
+        padding-left: 3rem;
+        font-size: 2rem;
+      }
+
+      .splash h1 {
+        font-size: 6rem;
+        max-width: 650px;
+      }
+
+      .splash h2 {
+        font-size: 2.5rem;
+      }
+
+      .header p {
+        font-size: 2.5rem;
+      }
+
+      .details {
+        font-size: 1.5rem;
+      }
+
+      .intro,
+      .venue {
+        height: calc(100svh - 2rem);
+      }
+
+      .blurp {
+        font-size: 2rem;
+      }
+
+      .photos {
+        --row: 300px;
+      }
+
+      .bio .image {
+        height: 500px;
+      }
+
+      .merch .items {
+        flex-direction: row;
+      }
+
+      .venue .content {
+        padding: 2rem;
+      }
+
+      .face-container {
+        position: fixed;
+      }
+
+      .face {
+        transform: translateX(100%);
+      }
+
+      .face.show {
+        transform: translateX(0);
+      }
+
+      .face img {
+        width: 350px;
+      }
+
+      .eyes-container {
+        display: block;
+      }
+
+      .eyes {
+        height: 10px;
+        width: 10px;
+      }
+
+      .eyes-left {
+        right: 180px;
+        top: 179px;
+      }
+
+      .eyes-right {
+        right: 85px;
+        top: 177px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bio .hover {
+        animation: none;
+      }
+
+      .face {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .intro {
+        overflow: hidden;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .bio {
+        height: calc(80svh - 2rem);
+      }
+
+      .bio .content {
+        flex-direction: row;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <div class="splash">
+    <div class="banner">
+      <div>Due to popularity the exhibition has been extended until the end of January, 2023</div>
+    </div>
+    <header class="header">
+      <h2 id="invite" hidden></h2>
+      <h1>Now draw the curtain</h1>
+      <p>
+        Solo Exhibition by <a href="https://untepid.com">Ana Curbelo</a>
+        <span>02.11.22 - 30.01.23</span>
+      </p>
+    </header>
+    <div class="details">
+      <span>The Book Club</span>
+      <span>EC2A 4RH</span>
+      <span>London</span>
+      <span style="margin-top: 1rem">
+        <a href="https://untepid.com/collections/in-the-gloaming">Shop the collection</a>
+      </span>
+    </div>
+  </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <section class="intro">
+    <div class="frame">
+      <div class="blurp">
+        <p>
+          <b>Now draw the curtain</b> is an exhibition by Ana Curbelo, the award-winning illustrator, that brings
+          together a body of work developed over the last four years.
+        </p>
+        <p>
+          Over three rooms, the exhibition traces an evolution that has affected both her palette and the mood her
+          work evokes. The humorous militant feminism of her early illustrations, characterised by punchy colours and
+          rotund anatomies, has gradually given way to greater introspection and a mostly monochromatic execution. The
+          subtle gestural elegance of her most recent work, in black and white, reflects a thoughtful contemplation of
+          emotional intimacy, which serves as a satisfying counterpoint to her more socially committed earlier work.
+        </p>
+      </div>
+    </div>
+  </section>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  <section id="gallery" class="gallery">
+    <h3>Gallery</h3>
+    <div class="photos">
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" style="--r: 0.667"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" width="1080" height="1620" loading="lazy" alt="Press PR"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A0-giclee-print.webp" style="--r: 0.835"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A0-giclee-print.webp" width="1080" height="1294" loading="lazy" alt="A0 giclee print"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A1-prints.webp" style="--r: 0.774"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A1-prints.webp" width="1080" height="1395" loading="lazy" alt="A1 prints"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A2-giclee-prints.webp" style="--r: 0.826"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A2-giclee-prints.webp" width="1080" height="1307" loading="lazy" alt="A2 giclee prints"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A2-prints.webp" style="--r: 0.831"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A2-prints.webp" width="1080" height="1299" loading="lazy" alt="A2 prints"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_entrance-view.webp" style="--r: 0.776"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_entrance-view.webp" width="1080" height="1392" loading="lazy" alt="Entrance view"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_giclee-print-dj.webp" style="--r: 1.334"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_giclee-print-dj.webp" width="1441" height="1080" loading="lazy" alt="Giclee print DJ"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_large-mural.webp" style="--r: 0.750"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_large-mural.webp" width="1080" height="1440" loading="lazy" alt="Large mural"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Murals-panoramic.webp" style="--r: 1.333"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Murals-panoramic.webp" width="1440" height="1080" loading="lazy" alt="Murals panoramic"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Murals.webp" style="--r: 1.361"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Murals.webp" width="1470" height="1080" loading="lazy" alt="Murals"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_oil-on-wood-I.webp" style="--r: 0.828"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_oil-on-wood-I.webp" width="1080" height="1305" loading="lazy" alt="Oil on wood I"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Oil-Painting-II.webp" style="--r: 0.801"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Oil-Painting-II.webp" width="1080" height="1349" loading="lazy" alt="Oil painting II"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Oil-Painting-IV.webp" style="--r: 0.707"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Oil-Painting-IV.webp" width="1007" height="1425" loading="lazy" alt="Oil painting IV"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Oil-Painting.webp" style="--r: 1.235"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Oil-Painting.webp" width="1334" height="1080" loading="lazy" alt="Oil painting"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_people.webp" style="--r: 1.333"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_people.webp" width="1440" height="1080" loading="lazy" alt="People at the exhibition"></a>
+      <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Window-Vinyl.webp" style="--r: 0.765"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Window-Vinyl.webp" width="1080" height="1411" loading="lazy" alt="Window vinyl"></a>
+      <a href="/imgs/Now-Draw-the-Curtain-II_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" style="--r: 0.667"><img src="/imgs/thumbs/Now-Draw-the-Curtain-II_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" width="1080" height="1620" loading="lazy" alt="Now Draw the Curtain II, Press PR"></a>
+      <a href="/imgs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_artist-painting-large-mural.webp" style="--r: 0.750"><img src="/imgs/thumbs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_artist-painting-large-mural.webp" width="1080" height="1440" loading="lazy" alt="Murals, artist painting large mural"></a>
+      <a href="/imgs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_Ping-pong-table-design-players.webp" style="--r: 0.750"><img src="/imgs/thumbs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_Ping-pong-table-design-players.webp" width="810" height="1080" loading="lazy" alt="Murals, ping pong table design with players"></a>
+      <a href="/imgs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_Ping-pong-table-design.webp" style="--r: 1.333"><img src="/imgs/thumbs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_Ping-pong-table-design.webp" width="1600" height="1200" loading="lazy" alt="Murals, ping pong table design"></a>
+      <a href="/imgs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" style="--r: 1.500"><img src="/imgs/thumbs/Now-Draw-the-Curtain-murals_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" width="1620" height="1080" loading="lazy" alt="Murals, Press PR"></a>
+    </div>
+    <dialog id="lightbox">
+      <img alt="">
+      <button data-step="-1" aria-label="Previous">‹</button>
+      <button data-step="1" aria-label="Next">›</button>
+      <form method="dialog"><button class="close" aria-label="Close">×</button></form>
+    </dialog>
+  </section>
+
+  <section id="about" class="bio">
+    <h3>About the artist</h3>
+    <div class="content">
+      <div class="image">
+        <img class="hover" src="/assets/ana.webp" alt="Ana Curbelo">
+        <img src="/assets/ana-hover.webp" alt="Ana Curbelo Doodle">
+      </div>
+      <div class="blurp">
+        <p>
+          Born in London, Curbelo grew up in the Canary Islands. In 2010 she left to study graphic communication at
+          Loughborough University. She now works from her studio in Stoke Newington, London.
+        </p>
+        <p>
+          Curbelo has worked as an illustrator internationally with clients such as Microsoft, BBC, and Vice, creating
+          characters with a very distinct personal style. Her best known work is her illustrations for The Tampon Book,
+          which helped change German law and won several awards, including a White Pencil in Impact at D&amp;AD, and a
+          Grand Prix at Cannes Lions, attracting worldwide press interest.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="merch" class="merch">
+    <h3>Merch</h3>
+    <div class="items">
+      <div>
+        <a class="image" href="https://untepid.com/products/now-draw-the-curtain-t-shirt-black-oversized-heavy-t-shirt">
+          <img class="hover" src="/assets/NDTC-TSHIRT-black-oversized-unisex-Front.webp" alt="NDTC TSHIRT black oversized unisex Front">
+          <img src="/assets/NDTC-TSHIRT-black-oversized-unisex-Back.webp" alt="NDTC TSHIRT black oversized unisex Back">
+        </a>
+        <a class="button" href="https://untepid.com/products/now-draw-the-curtain-t-shirt-black-oversized-heavy-t-shirt">NDTC TSHIRT</a>
+      </div>
+      <div>
+        <a class="image" href="https://untepid.com/products/now-draw-the-curtain-maxi-tote-bag">
+          <img src="/assets/NDTC-MAXI-TOTE-BAG-black-white-screen-print-recycled-cotton.webp" alt="NDTC MAXI TOTE">
+        </a>
+        <a class="button" href="https://untepid.com/products/now-draw-the-curtain-maxi-tote-bag">NDTC MAXI TOTE</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="venue" class="venue">
+    <div class="content">
+      <h3>The Venue</h3>
+      <div class="times">
+        <span>Weds: 5pm - 12am</span>
+        <span>Thurs: 5pm - 2am</span>
+        <span>Fridays: 4pm - 3am</span>
+        <span>Saturdays: 12pm - 3am</span>
+      </div>
+      <iframe title="map" width="100%" height="350" style="border: 0" loading="lazy"
+        src="https://www.google.com/maps?q=51.5246107,-0.081424&amp;z=17&amp;output=embed"></iframe>
+    </div>
+    <footer>
+      <div>#nowdrawthecurtain</div>
+      <div><img src="/assets/bookclub.webp" alt="The Bookclub"></div>
+      <div><img src="/assets/svp.webp" alt="Skye Victoria Project"></div>
+      <div>Made with ♥ by <a href="https://sirlisko.com">Luca Lischetti (@sirLisko)</a></div>
+    </footer>
+  </section>
+
+  <div class="face-container">
+    <div class="face">
+      <picture>
+        <source media="(min-width: 550px)" srcset="/assets/face-no-eyes.webp">
+        <img src="/assets/face.webp" alt="">
+      </picture>
+      <div class="eyes-container">
+        <span class="eyes eyes-left"></span>
+        <span class="eyes eyes-right"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const invite = location.search.match(/[?&](?:invite|x)=([^&]*)/)?.[1];
+    if (invite) {
+      try {
+        const h2 = document.getElementById("invite");
+        h2.textContent = `${atob(invite)}, you are invited to`;
+        h2.hidden = false;
+      } catch { }
+    }
+
+    const links = [...document.querySelectorAll(".photos a")];
+    const lightbox = document.getElementById("lightbox");
+    const big = lightbox.querySelector("img");
+    let current = 0;
+    const show = (i) => {
+      current = (i + links.length) % links.length;
+      big.src = links[current].href;
+      big.alt = links[current].firstElementChild.alt;
+      [current - 1, current + 1].forEach((n) => (new Image().src = links[(n + links.length) % links.length].href));
+    };
+    links.forEach((a, i) => a.addEventListener("click", (e) => {
+      e.preventDefault();
+      show(i);
+      lightbox.showModal();
+    }));
+    lightbox.querySelectorAll("[data-step]").forEach((b) =>
+      b.addEventListener("click", () => show(current + Number(b.dataset.step))));
+    lightbox.addEventListener("click", (e) => e.target === lightbox && lightbox.close());
+    lightbox.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+
+    // Justified rows like react-photo-gallery: choose row breaks so every row fills the width close to the target height.
+    const photos = document.querySelector(".photos");
+    const ratios = links.map((a) => a.firstElementChild.getAttribute("width") / a.firstElementChild.getAttribute("height"));
+    let laidOutWidth;
+    new ResizeObserver(() => {
+      const width = photos.clientWidth;
+      if (width === laidOutWidth) return;
+      laidOutWidth = width;
+      const target = parseFloat(getComputedStyle(photos).getPropertyValue("--row"));
+      const gap = 4;
+      const rowHeight = (i, j, sum) => (width - gap * (j - i - 1)) / sum;
+      const cost = [0];
+      const from = [0];
+      for (let j = 1; j <= ratios.length; j++) {
+        cost[j] = Infinity;
+        for (let i = j - 1, sum = 0; i >= 0; i--) {
+          sum += ratios[i];
+          const h = rowHeight(i, j, sum);
+          if (cost[i] + (h - target) ** 2 < cost[j]) {
+            cost[j] = cost[i] + (h - target) ** 2;
+            from[j] = i;
+          }
+          if (h < target / 3) break;
+        }
+      }
+      const rows = [];
+      for (let j = ratios.length; j > 0; j = from[j]) {
+        const row = document.createElement("div");
+        row.className = "row";
+        row.style.height = `${rowHeight(from[j], j, ratios.slice(from[j], j).reduce((a, b) => a + b))}px`;
+        row.append(...links.slice(from[j], j));
+        rows.unshift(row);
+      }
+      photos.replaceChildren(...rows);
+    }).observe(photos);
+
+    const face = document.querySelector(".face");
+    const [leftEye, rightEye] = document.querySelectorAll(".eyes");
+    // Eyes sit at these px offsets from the right edge; each pupil tracks the cursor relative to it.
+    const eye = (x, offset, inside, outside) => {
+      const width = document.body.clientWidth;
+      const pos = width - offset;
+      return x < pos ? -(100 - (x * 100) / pos) * inside : (((x - pos) * 100) / (width - pos)) * outside;
+    };
+    let hide, frame;
+    addEventListener("mousemove", ({ clientX }) => {
+      face.classList.add("show");
+      clearTimeout(hide);
+      hide = setTimeout(() => face.classList.remove("show"), 1500);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        leftEye.style.transform = `translateX(${eye(clientX, 180, 1.5, 1)}%)`;
+        rightEye.style.transform = `translateX(${eye(clientX, 85, 2, 1.5)}%)`;
+      });
+    });
+  </script>
 </body>
 
 </html>
