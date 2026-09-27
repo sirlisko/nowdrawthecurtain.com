@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#E39FC8" />
-  <meta name="description" content="Solo Exhibition by Ana Curbelo 02.11.22 - 10.12.22" />
+  <meta name="description" content="Solo exhibition by Ana Curbelo at The Book Club, London. 02.11.22 - 30.01.23" />
   <link rel="canonical" href="https://nowdrawthecurtain.untepid.com/" />
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://nowdrawthecurtain.untepid.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Now Draw the Curtain" />
-  <meta property="og:description" content="Solo Exhibition by Ana Curbelo 02.11.22 - 10.12.22" />
+  <meta property="og:description" content="Solo exhibition by Ana Curbelo at The Book Club, London. 02.11.22 - 30.01.23" />
   <meta property="og:image" content="https://nowdrawthecurtain.untepid.com/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -53,23 +53,6 @@
     }
 
     /* Splash */
-    .banner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #121212;
-      color: white;
-      width: calc(100vw - 1rem);
-      text-align: center;
-      padding: 0.75rem 0.5rem;
-      font-size: 1rem;
-    }
-
-    .banner div {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
     .splash {
       height: calc(100svh - 10rem);
       padding: 1rem;
@@ -85,13 +68,6 @@
       font-size: 3rem;
       line-height: 1;
       max-width: 300px;
-    }
-
-    .splash h2 {
-      font-family: var(--font-header);
-      font-weight: normal;
-      font-size: 1.5rem;
-      margin: 0;
     }
 
     .splash span {
@@ -326,14 +302,10 @@
       padding: 1rem;
     }
 
-    .times {
+    .address {
       text-align: center;
       padding-bottom: 2rem;
       font-size: 1.5rem;
-    }
-
-    .times span {
-      display: block;
     }
 
     footer {
@@ -402,10 +374,6 @@
       .splash h1 {
         font-size: 6rem;
         max-width: 650px;
-      }
-
-      .splash h2 {
-        font-size: 2.5rem;
       }
 
       .header p {
@@ -507,11 +475,7 @@
 
 <body>
   <div class="splash">
-    <div class="banner">
-      <div>Due to popularity the exhibition has been extended until the end of January, 2023</div>
-    </div>
     <header class="header">
-      <h2 id="invite" hidden></h2>
       <h1>Now draw the curtain</h1>
       <p>
         Solo Exhibition by <a href="https://untepid.com">Ana Curbelo</a>
@@ -532,11 +496,11 @@
     <div class="frame">
       <div class="blurp">
         <p>
-          <b>Now draw the curtain</b> is an exhibition by Ana Curbelo, the award-winning illustrator, that brings
-          together a body of work developed over the last four years.
+          <b>Now draw the curtain</b> was an exhibition by Ana Curbelo, the award-winning illustrator, that brought
+          together a body of work developed over the previous four years.
         </p>
         <p>
-          Over three rooms, the exhibition traces an evolution that has affected both her palette and the mood her
+          Over three rooms, the exhibition traced an evolution that has affected both her palette and the mood her
           work evokes. The humorous militant feminism of her early illustrations, characterised by punchy colours and
           rotund anatomies, has gradually given way to greater introspection and a mostly monochromatic execution. The
           subtle gestural elegance of her most recent work, in black and white, reflects a thoughtful contemplation of
@@ -623,13 +587,8 @@
   <section id="venue" class="venue">
     <div class="content">
       <h3>The Venue</h3>
-      <div class="times">
-        <span>Weds: 5pm - 12am</span>
-        <span>Thurs: 5pm - 2am</span>
-        <span>Fridays: 4pm - 3am</span>
-        <span>Saturdays: 12pm - 3am</span>
-      </div>
-      <iframe title="map" width="100%" height="350" style="border: 0" loading="lazy"
+      <p class="address">The exhibition was held at The Book Club, EC2A 4RH, London. The venue has since closed.</p>
+      <iframe title="Map of The Book Club" width="100%" height="350" style="border: 0" loading="lazy"
         src="https://www.google.com/maps?q=51.5246107,-0.081424&amp;z=17&amp;output=embed"></iframe>
     </div>
     <footer>
@@ -654,15 +613,6 @@
   </div>
 
   <script>
-    const invite = location.search.match(/[?&](?:invite|x)=([^&]*)/)?.[1];
-    if (invite) {
-      try {
-        const h2 = document.getElementById("invite");
-        h2.textContent = `${atob(invite)}, you are invited to`;
-        h2.hidden = false;
-      } catch { }
-    }
-
     const links = [...document.querySelectorAll(".photos a")];
     const lightbox = document.getElementById("lightbox");
     const big = lightbox.querySelector("img");
