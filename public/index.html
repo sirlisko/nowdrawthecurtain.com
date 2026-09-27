@@ -20,6 +20,35 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>Now Draw The Curtain - Untepid</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ExhibitionEvent",
+    "name": "Now Draw the Curtain",
+    "description": "Solo exhibition by Ana Curbelo at The Book Club, London.",
+    "url": "https://nowdrawthecurtain.untepid.com/",
+    "image": "https://nowdrawthecurtain.untepid.com/og.jpg",
+    "startDate": "2022-11-02",
+    "endDate": "2023-01-30",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "The Book Club",
+      "address": {
+        "@type": "PostalAddress",
+        "postalCode": "EC2A 4RH",
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      }
+    },
+    "performer": {
+      "@type": "Person",
+      "name": "Ana Curbelo",
+      "url": "https://untepid.com"
+    }
+  }
+  </script>
   <style>
     :root {
       --font-main: "franklin-gothic-condensed", sans-serif;
@@ -46,10 +75,12 @@
       color: currentColor;
     }
 
-    h3 {
+    h2 {
       font-family: var(--font-header);
+      font-weight: normal;
       text-align: center;
       font-size: 2.5rem;
+      margin: 1em 0;
     }
 
     /* Splash */
@@ -74,9 +105,31 @@
       display: block;
     }
 
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-top: 1rem;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
     .header {
       font-family: var(--font-header);
-      padding-top: 5rem;
+      padding-top: 3rem;
+    }
+
+    .hero-art {
+      display: none;
     }
 
     .details {
@@ -85,16 +138,19 @@
     }
 
     /* Intro */
+    .intro {
+      overflow-x: clip;
+    }
+
     .intro .frame {
       margin: 10vh auto;
-      max-width: 1200px;
+      max-width: 900px;
       padding: 3rem;
       background-color: rgba(0, 0, 0, .15);
       transform: rotate(-3deg);
     }
 
     .intro .blurp {
-      font-size: 1.5rem;
       background-color: var(--color-main);
       transform: rotate(3deg);
       padding: 2rem;
@@ -232,6 +288,7 @@
     }
 
     .bio .blurp {
+      max-width: 45rem;
       padding: 0 2rem;
     }
 
@@ -336,9 +393,6 @@
 
     .eyes-container {
       display: none;
-    }
-
-    .eyes-container {
       position: absolute;
       z-index: 100;
       top: 0;
@@ -365,10 +419,29 @@
     }
 
     @media (min-width: 550px) {
+      html {
+        scroll-snap-type: y proximity;
+      }
+
+      .splash,
+      section {
+        box-sizing: border-box;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        scroll-snap-align: start;
+      }
+
       .splash {
-        min-height: 700px;
+        height: auto;
+        min-height: max(100svh, 700px);
         padding-left: 3rem;
         font-size: 2rem;
+      }
+
+      .hero {
+        margin: auto 0;
       }
 
       .splash h1 {
@@ -384,9 +457,14 @@
         font-size: 1.5rem;
       }
 
-      .intro,
-      .venue {
-        height: calc(100svh - 2rem);
+      .intro .frame {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 2rem auto;
+      }
+
+      .bio {
+        margin: 0 auto;
       }
 
       .blurp {
@@ -406,6 +484,9 @@
       }
 
       .venue .content {
+        width: 100%;
+        box-sizing: border-box;
+        margin: auto;
         padding: 2rem;
       }
 
@@ -445,8 +526,42 @@
       }
     }
 
+    @media (hover: none) {
+      .merch .hover {
+        animation: pulse 3s ease-in infinite alternate;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 650px) 380px;
+        column-gap: 6rem;
+      }
+
+      .header {
+        padding-top: 0;
+      }
+
+      .splash h1 {
+        margin-top: 0;
+      }
+
+      .hero-art {
+        display: block;
+        background: url(/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp) center / cover no-repeat;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .bio .hover {
+      .bio .hover,
+      .merch .hover {
         animation: none;
       }
 
@@ -455,17 +570,7 @@
       }
     }
 
-    @media (max-width: 550px) {
-      .intro {
-        overflow: hidden;
-      }
-    }
-
     @media (min-width: 1000px) {
-      .bio {
-        height: calc(80svh - 2rem);
-      }
-
       .bio .content {
         flex-direction: row;
       }
@@ -475,20 +580,31 @@
 
 <body>
   <div class="splash">
-    <header class="header">
-      <h1>Now draw the curtain</h1>
-      <p>
-        Solo Exhibition by <a href="https://untepid.com">Ana Curbelo</a>
-        <span>02.11.22 - 30.01.23</span>
-      </p>
-    </header>
-    <div class="details">
-      <span>The Book Club</span>
-      <span>EC2A 4RH</span>
-      <span>London</span>
-      <span style="margin-top: 1rem">
-        <a href="https://untepid.com/collections/in-the-gloaming">Shop the collection</a>
-      </span>
+    <nav class="nav" aria-label="Sections">
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#merch">Merch</a>
+      <a href="#venue">Venue</a>
+    </nav>
+    <div class="hero">
+      <div>
+        <header class="header">
+          <h1>Now draw the curtain</h1>
+          <p>
+            Solo Exhibition by <a href="https://untepid.com">Ana Curbelo</a>
+            <span>02.11.22 - 30.01.23</span>
+          </p>
+        </header>
+        <div class="details">
+          <span>The Book Club</span>
+          <span>EC2A 4RH</span>
+          <span>London</span>
+          <span style="margin-top: 1rem">
+            <a href="https://untepid.com/collections/in-the-gloaming">Shop the collection</a>
+          </span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true"></div>
     </div>
   </div>
 
@@ -511,7 +627,7 @@
   </section>
 
   <section id="gallery" class="gallery">
-    <h3>Gallery</h3>
+    <h2>Gallery</h2>
     <div class="photos">
       <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" style="--r: 0.667"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_Press-PR_72.webp" width="1080" height="1620" loading="lazy" alt="Press PR"></a>
       <a href="/imgs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A0-giclee-print.webp" style="--r: 0.835"><img src="/imgs/thumbs/Now-Draw-the-Curtain_Ana-Curbelo_The-Book-Club-London_Untepid_A0-giclee-print.webp" width="1080" height="1294" loading="lazy" alt="A0 giclee print"></a>
@@ -544,7 +660,7 @@
   </section>
 
   <section id="about" class="bio">
-    <h3>About the artist</h3>
+    <h2>About the artist</h2>
     <div class="content">
       <div class="image">
         <img class="hover" src="/assets/ana.webp" alt="Ana Curbelo">
@@ -566,7 +682,7 @@
   </section>
 
   <section id="merch" class="merch">
-    <h3>Merch</h3>
+    <h2>Merch</h2>
     <div class="items">
       <div>
         <a class="image" href="https://untepid.com/products/now-draw-the-curtain-t-shirt-black-oversized-heavy-t-shirt">
@@ -586,7 +702,7 @@
 
   <section id="venue" class="venue">
     <div class="content">
-      <h3>The Venue</h3>
+      <h2>The Venue</h2>
       <p class="address">The exhibition was held at The Book Club, EC2A 4RH, London. The venue has since closed.</p>
       <iframe title="Map of The Book Club" width="100%" height="350" style="border: 0" loading="lazy"
         src="https://www.google.com/maps?q=51.5246107,-0.081424&amp;z=17&amp;output=embed"></iframe>
@@ -634,6 +750,12 @@
     lightbox.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") show(current - 1);
       if (e.key === "ArrowRight") show(current + 1);
+    });
+    let touchX;
+    lightbox.addEventListener("touchstart", (e) => (touchX = e.touches[0].clientX), { passive: true });
+    lightbox.addEventListener("touchend", (e) => {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
     });
 
     // Justified rows like react-photo-gallery: choose row breaks so every row fills the width close to the target height.
