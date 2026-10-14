@@ -1,4 +1,6 @@
 [build]
 publish = "public"
+# Static site; overrides the stale `npm run build` set in the Netlify UI
+command = ""
 
 # Redirects are in /public/_redirects
